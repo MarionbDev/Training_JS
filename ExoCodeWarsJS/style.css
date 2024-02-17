@@ -7,3 +7,23 @@
 h1 {
   margin: 10px;
 }
+
+.page {
+  display: flex;
+  justify-content: space-between;
+  margin-inline: 40px;
+  margin-top: 50px;
+}
+
+#code-container {
+  width: 70%;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  margin-bottom: 8px;
+  list-style: none;
+}

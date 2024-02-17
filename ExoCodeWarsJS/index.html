@@ -8,12 +8,105 @@
 
     <title>Excercices Code Wars</title>
   </head>
-  <body>
-    <h1>Excercices Code Wars</h1>
+
+      <body>
+        <h1>Excercices Code Wars</h1>
+        <div class="page">
+          <ul>
+            <li>
+              <a href="#" onclick="loadExercise('countAndSumInArray.js')"
+                >countAndSumInArray</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="loadExercise('basicMathOp.js')"
+                >basicMathOp</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="loadExercise('evenOrOdd.js')">evenOrOdd</a>
+            </li>
+            <li>
+              <a href="#" onclick="loadExercise('countSmileys.js')"
+                >countSmileys</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="loadExercise('consecutiveString.js')"
+                >consecutiveString</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="loadExercise('numberInOrder.js')"
+                >numberInOrder</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="loadExercise('timeCalculation.js')"
+                >timeCalculation</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="loadExercise('distanceUnitsMeters.js')"
+                >distanceUnitsMeters</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="loadExercise('sortedArray.js')"
+                >sortedArray</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="loadExercise('compareTime.js')"
+                >compareTime</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="loadExercise('mostFrequentlyUsedWordsInAText.js')"
+                >mostFrequentlyUsedWordsInAText</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="loadExercise('compareArray.js')"
+                >compareArray</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="loadExercise('directionsReduction.js')"
+                >directionsReduction</a
+              >
+            </li>
+          </ul>
+          <pre id="code-container"></pre>
+        </div>
+        <script>
+          function loadExercise(exercise) {
+            // Récupérer la balise <pre>
+            var codeContainer = document.getElementById("code-container");
+
+            // Récupérer le contenu du fichier JavaScript
+            fetch("files/" + exercise)
+              .then((response) => response.text())
+              .then((code) => {
+                // Afficher le contenu dans la balise <pre>
+                codeContainer.textContent = code;
+              })
+              .catch((error) => {
+                console.error(
+                  "Erreur de chargement du fichier JavaScript",
+                  error
+                );
+              });
+          }
+        </script>
+      </body>
+    </html>
 
     <!-- <script src="ExoCodeWarsJS/"></script> -->
     <script src="files/countAndSumInArray.js"></script>
-    <!-- <script src="files/basicMathOp.js"></script>
+    <script src="files/basicMathOp.js"></script>
     <script src="files/evenOrOdd.js"></script>
     <script src="files/countSmileys.js"></script>
     <script src="files/consecutiveString.js"></script>
@@ -24,6 +117,6 @@
     <script src="files/compareTime.js"></script>
     <script src="files/mostFrequentlyUsedWordsInAText.js"></script>
     <script src="files/compareArray.js"></script>
-    <script src="files/directionsReduction.js"></script> -->
+    <script src="files/directionsReduction.js"></script>
   </body>
 </html>
