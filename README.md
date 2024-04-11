@@ -4,5 +4,5 @@ Ce dépôt regroupe différents exercices en JavaScript pour m'aider à pratique
 
 - `exoCodeWarsJS/` : Exercices sur la plateforme CODEWARS
 - `miniJeux/` : Création de mini jeux
-- `trainingJS/` : Regroupe les tests des methodes JS
+- `trainingJS/` : Regroupe les méthodes JS
 
