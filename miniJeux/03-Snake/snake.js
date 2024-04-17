@@ -9,37 +9,6 @@ let dirX = 1;
 let dirY = 0;
 let score = 0;
 
-function generateFood() {
-  let food = {
-    x: Math.floor(Math.random() * 20),
-    y: Math.floor(Math.random() * 20),
-  };
-
-  return {
-    x: food.x,
-    y: food.y,
-  };
-}
-let food = generateFood(); // génère la position initiale de la nourriture avec la fonction random
-
-function drawFood() {
-  let gridContainer = document.querySelector(".grid-container");
-  let foodElement = document.createElement("div");
-  foodElement.className = "cell-food";
-  foodElement.style.gridColumnStart = food.x + 1;
-  foodElement.style.gridRowStart = food.y + 1;
-  foodElement.textContent = "🍒";
-  gridContainer.append(foodElement);
-}
-
-function checkAteFood(snakeHead, food) {
-  if (snakeHead.x === food.x && snakeHead.y === food.y) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 function drawSnake() {
   // sélection du grid-container
   let gridContainer = document.querySelector(".grid-container");
@@ -58,6 +27,7 @@ function drawSnake() {
     if (index === 0) {
       div.textContent = "🐸";
     }
+
     // positionner la div à l'endroit voulu pour le départ du jeu
     div.style.gridColumnStart = segment.x + 1; // +1 : ajuste l'index 0
     div.style.gridRowStart = segment.y + 1;
@@ -65,6 +35,39 @@ function drawSnake() {
     // ajout de la div au grid-container
     gridContainer.appendChild(div);
   });
+}
+
+function generateFood() {
+  let food = {
+    x: Math.floor(Math.random() * 20),
+    y: Math.floor(Math.random() * 20),
+  };
+
+  return {
+    x: food.x,
+    y: food.y,
+  };
+}
+
+let food = generateFood(); // génère la position initiale de la nourriture avec la fonction random
+
+function drawFood() {
+  let gridContainer = document.querySelector(".grid-container");
+  let foodElement = document.createElement("div");
+  foodElement.className = "cell-food";
+  foodElement.style.gridColumnStart = food.x + 1;
+  foodElement.style.gridRowStart = food.y + 1;
+  foodElement.textContent = "🍒";
+  gridContainer.append(foodElement);
+  document.getElementById("score").textContent = "Score: " + score;
+}
+
+function checkAteFood(snakeHead, food) {
+  if (snakeHead.x === food.x && snakeHead.y === food.y) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function moveSnake() {
@@ -76,7 +79,6 @@ function moveSnake() {
 
   // gestion des collisions
   if (newHead.x < 0 || newHead.x > 19 || newHead.y < 0 || newHead.y > 19) {
-    alert("GAME OVER");
     gameOver();
     clearInterval(gameInterval);
     return; // arrête la fonction moveSnake
@@ -84,9 +86,13 @@ function moveSnake() {
 
   if (checkAteFood(newHead, food)) {
     score++;
-    document.getElementById("score").textContent = "Score :" + score;
+    document.getElementById("score").textContent = "Score : " + score;
     // redessine le serpent après avoir déplacé la tête
     snake.unshift(newHead);
+    // Supprimer l'ancien élément de nourriture de la grille
+    let oldFoodElement = document.querySelector(".cell-food");
+    oldFoodElement.parentNode.removeChild(oldFoodElement);
+
     food = generateFood();
     drawFood();
   } else {
@@ -115,11 +121,24 @@ function gameLoop() {
   drawSnake();
 }
 
-generateFood();
-drawFood();
-drawSnake();
-gameInterval = setInterval(gameLoop, 100);
+function startGame() {
+  generateFood();
+  drawFood();
+  drawSnake();
+  gameInterval = setInterval(gameLoop, 100);
+}
 
+// Sélectionnez le bouton par son ID
+const startButton = document.getElementById("startButton");
+
+// Ajoutez un gestionnaire d'événement pour le clic sur le bouton
+startButton.addEventListener("click", () => {
+  // Cacher le bouton une fois le jeu démarré
+  startButton.style.display = "none";
+
+  // Appel de la fonction pour démarrer le jeu
+  startGame();
+});
 // ajout d'un écouteur d'évènement pour les touches du clavier
 document.addEventListener("keydown", (event) => {
   switch (event.key) {
