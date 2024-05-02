@@ -9,6 +9,7 @@ let dirX = 1;
 let dirY = 0;
 let score = 0;
 
+// Création du snake ------------------------------------------------------------------------
 function drawSnake() {
   // sélection du grid-container
   let gridContainer = document.querySelector(".grid-container");
@@ -37,6 +38,7 @@ function drawSnake() {
   });
 }
 
+// Gestion des éléments FOOD ----------------------------------------------------------------
 function generateFood() {
   let food = {
     x: Math.floor(Math.random() * 20),
@@ -70,8 +72,9 @@ function checkAteFood(snakeHead, food) {
   }
 }
 
+// Gestion des mouvements du snake ----------------------------------------------------------
 function moveSnake() {
-  // ajouter un nouveau segment à la tête du serpent
+  // ajout d'un nouveau segment à la tête du serpent
   let newHead = {
     x: snake[0].x + dirX,
     y: snake[0].y + dirY,
@@ -83,13 +86,13 @@ function moveSnake() {
     clearInterval(gameInterval);
     return; // arrête la fonction moveSnake
   }
-
+  // gestion des éléments FOOD
   if (checkAteFood(newHead, food)) {
     score++;
     document.getElementById("score").textContent = "Score : " + score;
     // redessine le serpent après avoir déplacé la tête
     snake.unshift(newHead);
-    // Supprimer l'ancien élément de nourriture de la grille
+    // supprime l'ancien élément de nourriture de la grille
     let oldFoodElement = document.querySelector(".cell-food");
     oldFoodElement.parentNode.removeChild(oldFoodElement);
 
@@ -99,23 +102,22 @@ function moveSnake() {
     snake.pop();
     snake.unshift(newHead);
   }
-
   drawSnake();
 }
 
+// Gestion du jeu lorsque c'est "perdu" -----------------------------------------------------
 function gameOver() {
-  // masquer le grid-container
+  // masque le grid-container
   let gridContainer = document.querySelector(".grid-container");
   gridContainer.style.display = "none";
-
-  // afficher message de fin de jeu
+  // affiche le message de fin de jeu
   let gameOverMessage = document.createElement("div");
   gameOverMessage.className = "game-over-message";
   gameOverMessage.textContent = "Game Over ! Appuyer sur F5 pour recommencer.";
-
   document.body.append(gameOverMessage);
 }
 
+// Gestion du mouvement du snake en boucle --------------------------------------------------
 function gameLoop() {
   moveSnake();
   drawSnake();
@@ -125,21 +127,22 @@ function startGame() {
   generateFood();
   drawFood();
   drawSnake();
-  gameInterval = setInterval(gameLoop, 100);
+  gameInterval = setInterval(gameLoop, 110);
 }
 
-// Sélectionnez le bouton par son ID
+// Débuter le jeu ---------------------------------------------------------------------------
+// sélectionne le bouton par son id
 const startButton = document.getElementById("startButton");
-
-// Ajoutez un gestionnaire d'événement pour le clic sur le bouton
+// ajout d'un gestionnaire d'événement pour le clic sur le bouton
 startButton.addEventListener("click", () => {
-  // Cacher le bouton une fois le jeu démarré
+  // cache le bouton une fois le jeu démarré
   startButton.style.display = "none";
 
-  // Appel de la fonction pour démarrer le jeu
+  // appel de la fonction pour démarrer le jeu
   startGame();
 });
-// ajout d'un écouteur d'évènement pour les touches du clavier
+
+// Ecouteur d'évènement pour les touches du clavier -----------------------------------------
 document.addEventListener("keydown", (event) => {
   switch (event.key) {
     case "ArrowLeft":
