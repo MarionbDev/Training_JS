@@ -5,7 +5,7 @@ const playerOne = "X";
 const playerTwo = "O";
 let playerTurn = playerOne;
 
-// Il faut checker les différentes combinaisons
+// Checker les différentes combinaisons -----------------------------------------------------
 const winnigPatterns = [
   [0, 1, 2],
   [3, 4, 5],
@@ -17,11 +17,13 @@ const winnigPatterns = [
   [2, 4, 6],
 ];
 
+// Gestion de l'écouteur d'évènement au click d'une cellule ---------------------------------
 // ---Etape 1---
 cells.forEach((cell) => {
   cell.addEventListener("click", playGame, { once: true }); // déclenche une seule fois chaque cellule
 });
 
+// Gestion du jeu en global -----------------------------------------------------------------
 function playGame(e) {
   // ---Etape 2---
   e.target.innerHTML = playerTurn;
@@ -41,8 +43,8 @@ function playGame(e) {
   playerTurn == playerOne ? (playerTurn = playerTwo) : (playerTurn = playerOne);
 }
 
+// Tester chaque combinaison de victoire ----------------------------------------------------
 // ---Etape 9---
-// Tester chaque combinaison de victoire
 // Puis vérifier sur chaque combinaison si c'est égale au symbole du player
 function checkWin(playerTurn) {
   return winnigPatterns.some((combination) => {
@@ -52,6 +54,7 @@ function checkWin(playerTurn) {
   });
 }
 
+// Tester l'égalité -------------------------------------------------------------------------
 // ---Etape 10---
 // mettre nos cellules dans un tableau d'éléments
 // On vérifie pour chaque cellule s'il y a la marque du joueur 1 ou du joueur 2
@@ -62,8 +65,8 @@ function checkEquality() {
   });
 }
 
+// Créer un texte à chaque tour de jeu ------------------------------------------------------
 // ---Etape 4---
-// créer un texte pour les joueurs
 function updateGameStatus(status) {
   let statusText;
 
@@ -89,12 +92,14 @@ function updateGameStatus(status) {
   endGameStatus.innerHTML = statusText;
 }
 
+// Gestion de la fin du jeu -----------------------------------------------------------------
 // ---Etape 6---
 // Enlève la classe "display:none" et faire apparaître l'overlay de fin de jeu
 function endGame() {
   document.getElementById("gameEnd").style.display = "block";
 }
 
+// Gestion pour relancer le jeu -------------------------------------------------------------
 // ---Etape 7---
 // Activer le bouton recommencer
 function reloadGame() {
