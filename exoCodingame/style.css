@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+body {
+  background-image: url("https://raw.githubusercontent.com/NouvelleTechno/Fusee-Volante/master/images/background.png");
+  color: white;
+  font-weight: bold;
+  padding-top: 30px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 50px;
+}
+
+.surface {
+  position: relative;
+  border: solid 5px;
+  border-color: rgb(148, 144, 144);
+  width: 800px;
+  height: 500px;
+  background: linear-gradient(
+      180deg,
+      rgba(9, 20, 46, 0.7) 29%,
+      rgba(20, 38, 79, 0.7) 73%,
+      rgba(33, 55, 122, 0.7) 95%
+    ),
+    conic-gradient(
+        from -45deg at bottom,
+        rgb(88, 83, 83),
+        rgb(7, 7, 59) 1deg 89deg,
+        rgb(88, 83, 83) 90deg
+      )
+      80%/100px 100%;
+}
+
+/* .surface::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    180deg,
+    #09142e 29%,
+    #14264f 73%,
+    #21377a 95%
+  );
+  z-index: 0;
+} */
+
+.rocket {
+  position: absolute;
+  width: 60px;
+  padding-top: 8px;
+}
