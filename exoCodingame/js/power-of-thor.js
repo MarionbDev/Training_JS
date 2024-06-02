@@ -11,7 +11,9 @@ while (true) {
   // Write an action using console.log()
   // To debug: console.error('Debug messages...');
 
-  // Initialise la direction
+
+  // My solution :
+    // Initialise la direction
   let direction = "";
 
   // Verticale
