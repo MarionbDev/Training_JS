@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const surface = document.querySelector(".surface");
 
   let x = 365;
-  let y = 300;
+  let y = 400;
   let speed = 15;
   let score = 0;
 
