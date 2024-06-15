@@ -54,6 +54,16 @@ body {
   font-size: 20px;
 }
 
+.cell-meteorite {
+  position: absolute;
+  font-size: 30px;
+}
+
+.img-meteorite {
+  width: 30px;
+  height: 30px;
+}
+
 #score {
   font-size: 25px;
   margin-top: 20px;
