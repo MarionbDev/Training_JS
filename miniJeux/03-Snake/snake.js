@@ -127,7 +127,6 @@ function startGame() {
   generateFood();
   drawFood();
   drawSnake();
-  gameInterval = setInterval(gameLoop, 110);
 }
 
 // Débuter le jeu ---------------------------------------------------------------------------

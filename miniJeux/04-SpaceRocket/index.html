@@ -12,7 +12,17 @@
   <body>
     <main>
       <h1>Space Rocket</h1>
+
       <div class="container">
+        <button id="startButton">Commencer le jeu</button>
+        <button id="reloadButton">Recommencer le jeu</button>
+        <div class="params-container">
+          <div id="score"></div>
+          <div id="timer"></div>
+          <div id="playerOne"></div>
+          <div id="playerTwo"></div>
+        </div>
+
         <div class="surface">
           <img
             src="./rocket.png"
@@ -21,8 +31,6 @@
             id="rocket"
           />
         </div>
-        <div id="score"></div>
-        <div id="time"></div>
       </div>
     </main>
     <script src="./spacerocket.js"></script>
