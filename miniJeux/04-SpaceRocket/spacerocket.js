@@ -1,12 +1,34 @@
 const rocket = document.getElementById("rocket");
 const surface = document.querySelector(".surface");
 const imageMeteorite = document.createElement("img");
+const playerOne = "Player 1";
+const playerTwo = "Player 2";
+let playerTurn = playerOne;
 
 let x = 365;
 let y = 400;
-
 let speed = 15;
 let score = 0;
+let time = 20;
+
+// Gestion du temps
+function timer() {
+  let timerElement = document.getElementById("timer");
+  let minutes = parseInt(time / 60, 10);
+  let secondes = parseInt(time % 60, 10);
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  secondes = secondes < 10 ? "0" + secondes : secondes;
+  timerElement.innerText = "Timer : " + minutes + ":" + secondes;
+
+  if (time === 0) {
+    timeOver();
+    clearInterval(starInterval);
+    clearInterval(meteoriteInterval);
+    clearInterval(timerInterval);
+  } else {
+    time--;
+  }
+}
 
 // Gestion des mouvements de la fusée -----------------------------------------
 function moveRocket() {
@@ -180,8 +202,6 @@ function starLoop() {
   moveStar();
 }
 
-setInterval(starLoop, 100);
-
 // Gestion de la boucle des METEORITES --------------------------------------
 function meteoriteLoop() {
   if (Math.random() < 0.05) {
@@ -191,7 +211,43 @@ function meteoriteLoop() {
   moveMeteorite();
 }
 
-setInterval(meteoriteLoop, 120);
+// Débuter le jeu  ------------------------------------------------------------
+
+function startGame() {
+  timerInterval = setInterval(timer, 1000);
+  starInterval = setInterval(starLoop, 100);
+  meteoriteInterval = setInterval(meteoriteLoop, 120);
+}
+
+const startButton = document.getElementById("startButton");
+startButton.addEventListener("click", () => {
+  startButton.style.display = "none";
+  startGame();
+});
+
+const reloadButton = document.getElementById("reloadButton");
+reloadButton.addEventListener("click", () => {
+  reloadButton.style.display = "block";
+  reloadGame();
+});
+
+// Gestion du jeu lorsque le TIMER est écoulé  --------------------------------
+function timeOver() {
+  clearInterval(starInterval);
+  clearInterval(meteoriteInterval);
+  clearInterval(timerInterval);
+  let surface = document.querySelector(".surface");
+  surface.style.display = "none";
+  let timeOverMessage = document.createElement("div");
+  timeOverMessage.className = "timer-over-message";
+  timeOverMessage.textContent = "Timer Over !";
+  document.body.append(timeOverMessage);
+  reloadButton.style.display = "block";
+}
+
+function reloadGame() {
+  window.location.reload();
+}
 
 // Ecouteur d'évènement pour les touches du clavier -------------------------
 document.addEventListener("keydown", (event) => {
