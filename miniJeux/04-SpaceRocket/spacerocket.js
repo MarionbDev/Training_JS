@@ -212,7 +212,6 @@ function meteoriteLoop() {
 }
 
 // Débuter le jeu  ------------------------------------------------------------
-
 function startGame() {
   timerInterval = setInterval(timer, 1000);
   starInterval = setInterval(starLoop, 100);
